@@ -9,7 +9,7 @@ class InputReader {
     }
 
     static getDayReader (day, fileName = 'input') {
-        return new InputReader(path.join(__dirname, `../puzzles/day-${day}/${fileName}`))
+        return new InputReader(path.join(__dirname, `../puzzles/day-${day.padStart(2, '0')}/${fileName}`))
     }
 
     read (parser) {
