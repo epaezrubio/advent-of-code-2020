@@ -1,34 +1,33 @@
-const InputReader = require('../../helpers/input-reader');
+const InputReader = require('../../helpers/input-reader')
 
-function  getBeforeLoopValue(instructions) {
-    let accumulatedValue = 0;
-    let currentLine = 0;
-    let visitedLines = new Set();
+function getBeforeLoopValue (instructions) {
+  let accumulatedValue = 0
+  let currentLine = 0
+  const visitedLines = new Set()
 
-    do {
-        let currentInstruction = instructions[currentLine];
+  do {
+    const currentInstruction = instructions[currentLine]
 
-        visitedLines.add(currentLine)
+    visitedLines.add(currentLine)
 
-        if (currentInstruction[0] === 'jmp') {
-            currentLine = currentLine + currentInstruction[1]
-        } else {
-            if (currentInstruction[0] === 'acc') {
-                    accumulatedValue = accumulatedValue + currentInstruction[1]
-            }
+    if (currentInstruction[0] === 'jmp') {
+      currentLine = currentLine + currentInstruction[1]
+    } else {
+      if (currentInstruction[0] === 'acc') {
+        accumulatedValue = accumulatedValue + currentInstruction[1]
+      }
 
-            currentLine = currentLine + 1;
-        }
+      currentLine = currentLine + 1
+    }
+  } while (!visitedLines.has(currentLine))
 
-    } while (!visitedLines.has(currentLine));
-
-    return accumulatedValue;
+  return accumulatedValue
 }
 
 const input = InputReader.getDayReader('8').read((val) => {
-    let tokens = val.split(' ');
+  const tokens = val.split(' ')
 
-    return [tokens[0], parseInt(tokens[1])];
-});
+  return [tokens[0], parseInt(tokens[1])]
+})
 
-console.log(getBeforeLoopValue(input));
+console.log(getBeforeLoopValue(input))

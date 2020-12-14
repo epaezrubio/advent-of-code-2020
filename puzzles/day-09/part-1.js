@@ -1,39 +1,40 @@
-const InputReader = require('../../helpers/input-reader');
+const InputReader = require('../../helpers/input-reader')
 
 function isSumOfTwo (preamble, target) {
-    const inverseAdditionMap = {}
+  const inverseAdditionMap = {}
 
-    for (let i = 0; i < preamble.length; i++) {
-        let n = preamble[i]
+  for (let i = 0; i < preamble.length; i++) {
+    const n = preamble[i]
 
-        if (inverseAdditionMap[n]) {
-            return true
-        }
-
-        // check for number duplication
-        if (target / 2 === n) {
-            continue
-        }
-
-        // Add the pre-calculated matching number to the map
-        inverseAdditionMap[target - n] = n
+    if (inverseAdditionMap[n]) {
+      return true
     }
 
-    return false
+    // check for number duplication
+    if (target / 2 === n) {
+      continue
+    }
+
+    // Add the pre-calculated matching number to the map
+    inverseAdditionMap[target - n] = n
+  }
+
+  return false
 }
 
 function findWeakNumber (numbers, preambleLength) {
-    let preambleStart = 0
-    let currentNumber;
+  let preambleStart = 0
+  let currentNumber
+  let preamble
 
-    do {
-        currentNumber = numbers[preambleStart + preambleLength]
-        preamble = numbers.slice(preambleStart, preambleStart + preambleLength)
+  do {
+    currentNumber = numbers[preambleStart + preambleLength]
+    preamble = numbers.slice(preambleStart, preambleStart + preambleLength)
 
-        preambleStart = preambleStart + 1
-    } while (isSumOfTwo(preamble, currentNumber))
+    preambleStart = preambleStart + 1
+  } while (isSumOfTwo(preamble, currentNumber))
 
-    return currentNumber
+  return currentNumber
 }
 
 const PREAMBLE_LENGTH = 25
