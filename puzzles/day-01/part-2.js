@@ -1,6 +1,6 @@
 const InputReader = require('../../helpers/input-reader')
 
-function getAddingTripeMultiplication(target, input = []) {
+function getAddingTripeMultiplication (target, input = []) {
   for (let i = 0; i < input.length; i++) {
     for (let j = 0; j < input.length; j++) {
       for (let k = 0; k < input.length; k++) {
